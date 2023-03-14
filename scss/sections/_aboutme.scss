@@ -1,0 +1,132 @@
+.container__about-me {
+  margin: 165px auto;
+  display: flex;
+
+  .about-me__left-column {
+    width: 50%;
+    height: 456px;
+    position: relative;
+
+    .left-column__image {
+      @include left-off-image(248, 161);
+    }
+  }
+
+  .about-me__right-column {
+    width: 60%;
+    padding-left: 124px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .right-column__titles {
+      margin-bottom: 40px;
+      .titles__description {
+        @include titles-description;
+      }
+    }
+
+    .right-column__player {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .player__circle {
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        background-color: $color-primary;
+        border-radius: 50%;
+
+        @include display_center_x_y;
+
+        .circle__triangle {
+          width: 0;
+          height: 0;
+          border-top: 10px solid transparent;
+          border-bottom: 10px solid transparent;
+          border-left: 14px solid white;
+        }
+      }
+
+      .player__btn {
+        display: none;
+
+        &:checked ~ .player__real__button {
+          .player__circle {
+            .circle__triangle {
+              height: unset;
+              width: unset;
+              height: 38%;
+              width: 38%;
+              background-color: white;
+              border: 0;
+            }
+          }
+        }
+      }
+
+      .player__timeline {
+        height: 5px;
+        width: 100px;
+        background-color: $colors-medium-grey;
+        opacity: 0.5;
+      }
+
+      .player__description {
+        @include font-settings(1.125rem, 100, 1.125rem, $colors-medium-grey);
+      }
+    }
+  }
+
+  @include small_desktop {
+    margin: 100px auto;
+    .about-me__left-column {
+      height: unset;
+      .left-column__image {
+        left: 0;
+        position: static;
+      }
+    }
+  }
+
+  @include smallest_desktop {
+    .about-me__left-column {
+      .left-column__image {
+        left: 0;
+      }
+    }
+  }
+
+  @include tablet {
+    margin: 50px auto;
+    flex-direction: column;
+    align-items: center;
+    .about-me__left-column {
+      margin-bottom: 60px;
+      .left-column__image {
+        left: 0;
+      }
+    }
+
+    .about-me__right-column {
+      padding: unset;
+      width: 100%;
+
+      .right-column__player {
+        gap: 10px;
+        .player__circle {
+          height: 45px;
+          width: 45px;
+        }
+
+        .player__timeline {
+          width: 20%;
+        }
+
+        .player__description {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,97 @@
+@import "/scss/settings/_variables";
+@import "/scss/settings/_mixins";
+
+.btn {
+  text-transform: uppercase;
+  padding: 24px 72px;
+  border: none;
+  border-radius: 36px;
+  background-color: $color-primary;
+  color: $color-white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: $color-secondary-orange;
+  box-shadow: 0px 32px 20px -28px $color-secondary-orange;
+  z-index: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  transition: 0.2s;
+  &:hover {
+    background-color: $color-dark-background;
+    box-shadow: 0px 32px 20px -28px $color-primary;
+  }
+}
+
+.btn-hero {
+  text-transform: capitalize;
+  font-family: $font-buttons-thirdary;
+  font-weight: 300;
+  font-size: 1.4375rem;
+  border-radius: 42px;
+  padding: 23px 60px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0px 40px 40px -32px $color-primary;
+  @include smallest_mobile {
+    font-size: 16px;
+  }
+
+  transition: 0.2s;
+  &:hover {
+    background-color: $color-text-dark_blue;
+    &::before {
+      animation: iconRotate 1s infinite;
+    }
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-image: url(../images/waving-hand.svg);
+    margin-right: 20px;
+
+    @include smallest_mobile {
+      display: none;
+    }
+  }
+}
+
+.btn-single-block {
+  font-family: $font-titles;
+  color: white;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 25px;
+  padding: 14px 30px;
+  text-transform: capitalize;
+  font-weight: 400;
+  margin-bottom: 48px;
+  transition: 0.3s;
+}
+
+.btn-single-block:hover {
+  background-color: white;
+  color: $color-text-dark_blue;
+}
+
+.btn-about-us {
+  padding-left: 120px;
+  padding-right: 120px;
+}
+
+@keyframes iconRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(-0deg);
+  }
+}

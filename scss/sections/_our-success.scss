@@ -1,0 +1,119 @@
+.container__our-success {
+  @include display_center_y;
+  flex-direction: column;
+  margin-top: 125px;
+  margin-bottom: 125px;
+
+  .our-success__titles {
+    margin-bottom: 138px;
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .titles__subtitle {
+      @include font-settings(1rem, 300, 1rem, $font-main);
+    }
+  }
+
+  .our-success__stats {
+    font-family: $font-titles;
+    display: flex;
+
+    .stats__single-stat {
+      margin: 0 78px;
+      @include display_center_x_y;
+      flex-direction: column;
+
+      .single-stat__value {
+        text-align: center;
+        padding: 75px 60px 60px 60px;
+        border-radius: 45px;
+        @include font-settings(2.375rem, 900, 2.375rem, white, $font-titles);
+      }
+
+      .value_1 {
+        background: $gradient-2nd_set-1;
+      }
+
+      .value_2 {
+        background: $gradient-2nd_set-2;
+      }
+
+      .value_3 {
+        background: $gradient-2nd_set-3;
+      }
+
+      .single-stat__name {
+        margin-top: 26px;
+        @include font-settings(
+          1.125rem,
+          bold,
+          1.125rem,
+          $color-dark-blue,
+          $font-titles
+        );
+      }
+    }
+  }
+
+  @include smallest_desktop {
+    .our-success__titles {
+      margin-bottom: 100px;
+
+      h2 {
+        margin-bottom: 10px;
+      }
+    }
+
+    .our-success__stats {
+      width: 80%;
+      display: flex;
+      justify-content: space-between;
+      .stats__single-stat {
+        margin: unset;
+        width: 28%;
+        .single-stat__value {
+          text-align: center;
+          width: 100%;
+          padding: 50px 0;
+        }
+        .single-stat__name {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  @include mobile {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    .our-success__titles {
+      margin-bottom: 80px;
+    }
+
+    .our-success__stats {
+      flex-direction: column;
+      width: 100%;
+
+      .stats__single-stat {
+        width: 100%;
+        position: relative;
+        margin-bottom: 30px;
+        .single-stat__value {
+          padding-top: 20px;
+        }
+        .single-stat__name {
+          margin: unset;
+          position: absolute;
+          bottom: 20px;
+          color: white;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

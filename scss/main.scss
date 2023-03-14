@@ -1,0 +1,58 @@
+@import "/scss/settings/_reset";
+@import "/scss/settings/_variables";
+@import "/scss/settings/_mixins";
+@import "/scss/settings/_buttons";
+@import "/scss/settings/_titles";
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: $font-main;
+  position: relative;
+  background-color: white;
+}
+
+.container {
+  width: $container-width;
+  margin: 0 auto;
+  @include small_desktop {
+    width: $container-width-small-desktop;
+  }
+
+  @include smallest_desktop {
+    width: $container-width-smallest-desktop;
+  }
+
+  @include tablet {
+    width: unset;
+    max-width: unset;
+    width: 80%;
+  }
+}
+
+@import "/scss/sections/_nav";
+@import "/scss/sections/_hero";
+@import "/scss/sections/_services";
+@import "/scss/sections/_aboutme";
+@import "/scss/sections/_ourportfolio";
+@import "/scss/sections/_our-success";
+@import "/scss/sections/_about-us";
+@import "/scss/sections/_attributes";
+@import "/scss/sections/_our-workflow";
+@import "/scss/sections/_our-blog";
+@import "/scss/sections/_footer";

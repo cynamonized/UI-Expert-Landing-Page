@@ -1,0 +1,109 @@
+@mixin small_desktop {
+  @media (max-width: 1350px) {
+    @content;
+  }
+}
+
+@mixin smallest_desktop {
+  @media (max-width: 1150px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 870px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: 670px) {
+    @content;
+  }
+}
+
+@mixin smallest_mobile {
+  @media (max-width: 370px) {
+    @content;
+  }
+}
+
+//Mixins display: flex
+
+@mixin display_center_x_y {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin display_center_x {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin display_center_y {
+  display: flex;
+  align-items: center;
+}
+
+@mixin diplay_column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin display_column_center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// Navi portfolio
+
+@mixin unchecked_dot {
+  height: 13px;
+  width: 13px;
+  opacity: 0.3;
+  border-radius: 50%;
+  background-color: $color-primary;
+}
+
+@mixin checked_dot {
+  height: 13px;
+  width: 62px;
+  opacity: 1;
+  background-color: $color-primary;
+  border-radius: 7px;
+}
+
+// Font-wise
+
+@mixin font-settings(
+  $font-size: 16px,
+  $font-weight: 400,
+  $line-height: 22px,
+  $color: black,
+  $font-family: $font-main
+) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  color: $color;
+  font-family: $font-family;
+}
+
+@mixin titles-description {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: $color-text-dark_grey;
+  margin-top: 20px;
+  max-width: 500px;
+}
+
+// Left off images
+
+@mixin left-off-image($aspect-ratio-x, $aspect-ratio-y) {
+  position: absolute;
+  width: 120%;
+  left: -20%;
+  aspect-ratio: $aspect-ratio-x/$aspect-ratio-y;
+}

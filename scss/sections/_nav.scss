@@ -1,0 +1,203 @@
+header {
+  z-index: 2;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    content: "";
+    display: block;
+    background-image: url(../images/Header-background-cropped.svg);
+    opacity: 0.95;
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: contain;
+    width: 70%;
+    aspect-ratio: 487/137;
+    top: 0px;
+    right: 0px;
+    z-index: -1;
+    box-shadow: 0px 40px 40px #c5c3f926;
+  }
+
+  .container__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 186px;
+    font-family: $font-titles;
+
+    // Initial styles for hamburger objects
+    .header__checkbox {
+      display: none;
+    }
+
+    .header__icon {
+      display: inline-block;
+      // float: right;
+      padding: 28px 20px;
+      position: relative;
+      user-select: none;
+    }
+
+    .header__navicon {
+      background: $color-primary;
+      display: block;
+      height: 2px;
+      position: relative;
+      transition: background 0.2s ease-out;
+      width: 18px;
+      display: none;
+
+      &::before,
+      &::after {
+        background: $color-primary;
+        content: "";
+        display: block;
+        height: 100%;
+        position: absolute;
+        transition: all 0.2s ease-out;
+        width: 100%;
+      }
+    }
+
+    .header__navicon::before {
+      top: 5px;
+    }
+
+    .header__navicon::after {
+      top: -5px;
+    }
+
+    // Hamburger click & animation
+
+    .header__checkbox:checked ~ .header__icon {
+      .header__navicon {
+        background-color: transparent;
+
+        &::before {
+          transform: rotate(-45deg);
+          top: 0;
+        }
+
+        &::after {
+          transform: rotate(45deg);
+          top: 0;
+        }
+      }
+    }
+
+    //
+
+    .header__logo {
+      @include font-settings(2rem, bold, 2rem, $color-primary, $font-titles);
+    }
+
+    .header__logo > span {
+      font-weight: 300;
+      color: $color-text-dark_blue;
+    }
+
+    .header__right-menu {
+      display: flex;
+      align-items: center;
+
+      .right-menu__elements {
+        display: flex;
+        color: $color-white;
+
+        li {
+          text-transform: uppercase;
+
+          margin: 20px;
+
+          @include font-settings(1.25rem, 500, 1.25rem, white, $font-titles);
+
+          &:hover {
+            color: $color-secondary-orange;
+          }
+        }
+      }
+    }
+  }
+
+  @include small_desktop {
+    &::after {
+      width: 80%;
+    }
+    .container__header {
+      .header__right-menu {
+        .right-menu__elements {
+          li {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  @include smallest_desktop {
+    &::after {
+      display: none;
+    }
+    .container__header {
+      position: relative;
+
+      .header__navicon {
+        display: block;
+      }
+
+      .header__checkbox:checked ~ .header__right-menu {
+        transition: 0.5s;
+        display: block;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        position: absolute;
+        right: 0;
+        top: 120px;
+
+        &::after {
+          position: absolute;
+          content: "";
+          display: block;
+          background-color: white;
+          border: 1px solid rgb(231, 231, 231);
+          border-radius: 50px;
+          height: 130%;
+          width: 130%;
+          top: -20%;
+          left: -15%;
+          opacity: 1;
+          z-index: -2;
+        }
+
+        .right-menu__elements {
+          display: flex;
+          flex-direction: column;
+          text-align: right;
+          margin-top: 10px;
+
+          li {
+            color: $color-primary;
+            &:hover {
+              color: $color-secondary-orange;
+            }
+          }
+        }
+
+        .right-menu__button {
+          margin-top: 30px;
+        }
+      }
+
+      .header__right-menu {
+        display: none;
+        .right-menu__elements {
+          li {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
