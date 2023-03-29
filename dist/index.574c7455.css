@@ -1263,72 +1263,72 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
 }
 
 .container__about-us .blurred-image--1 {
-  transition: all .3s;
+  transition: all 3s;
   position: absolute;
-  top: 532px;
+  top: 257px;
   left: 100px;
 }
 
 .container__about-us .blurred-image--2 {
-  transition: all .3s;
+  transition: all 3s;
   position: absolute;
-  top: 281px;
+  top: 275px;
   left: 200px;
 }
 
 .container__about-us .blurred-image--3 {
-  transition: all .3s;
+  transition: all 3s;
   position: absolute;
-  top: 500px;
+  top: 285px;
   left: 300px;
 }
 
 .container__about-us .blurred-image--4 {
-  transition: all .3s;
+  transition: all 3s;
   position: absolute;
-  top: 296px;
+  top: 507px;
   left: 400px;
 }
 
 .container__about-us .blurred-image--5 {
-  transition: all .3s;
+  transition: all 3s;
   position: absolute;
-  top: 256px;
+  top: 252px;
   left: 500px;
 }
 
 .container__about-us .blurred-image--6 {
-  transition: all .3s;
+  transition: all 3s;
   position: absolute;
-  top: 516px;
+  top: 508px;
   left: 600px;
 }
 
 .container__about-us .blurred-image--7 {
-  transition: all .3s;
+  transition: all 3s;
   position: absolute;
-  top: 504px;
+  top: 523px;
   left: 700px;
 }
 
 .container__about-us .blurred-image--8 {
-  transition: all .3s;
+  transition: all 3s;
   position: absolute;
-  top: 548px;
+  top: 271px;
   left: 800px;
 }
 
 .container__about-us .blurred-image--9 {
-  transition: all .3s;
+  transition: all 3s;
   position: absolute;
-  top: 506px;
+  top: 543px;
   left: 900px;
 }
 
 .container__about-us .blurred-image--10 {
-  transition: all .3s;
+  transition: all 3s;
   position: absolute;
-  top: 521px;
+  top: 256px;
   left: 1000px;
 }
 
