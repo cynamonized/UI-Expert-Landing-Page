@@ -3,15 +3,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const interval = setInterval(function() {
         blurredImages.forEach(function(element) {
             //   console.log(generateYPosJs());
+            element.style.transition = "10s";
             element.style.top = generateYPosJs(200);
         });
     }, 4000);
-    //   const intervalHorizontal = setInterval(function () {
-    //     blurredImages.forEach(function (element) {
-    //       //   console.log(generateYPosJs());
-    //       element.style.left = generateYPosJs(1000);
-    //     });
-    //   }, 4500);
     function generateYPosJs(spread) {
         const randomNumber = Math.random() * 100;
         let randomTop = Math.random() * spread;
