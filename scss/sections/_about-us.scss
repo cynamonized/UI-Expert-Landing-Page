@@ -72,6 +72,7 @@
       img {
         width: 18%;
         aspect-ratio: 1/1;
+        z-index: 7;
       }
 
       &::after {
@@ -81,7 +82,7 @@
         display: block;
         height: 50px;
         width: 50px;
-        z-index: 5;
+        z-index: 8;
         color: white;
         line-height: 50px;
         border-radius: 50%;

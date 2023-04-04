@@ -1273,7 +1273,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 1px;
+  top: 117px;
   left: 80px;
 }
 
@@ -1285,7 +1285,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 36px;
+  top: 17px;
   left: 160px;
 }
 
@@ -1297,7 +1297,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 120px;
+  top: 40px;
   left: 240px;
 }
 
@@ -1309,7 +1309,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 4px;
+  top: 43px;
   left: 320px;
 }
 
@@ -1321,7 +1321,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 131px;
+  top: 126px;
   left: 400px;
 }
 
@@ -1333,7 +1333,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 97px;
+  top: 123px;
   left: 720px;
 }
 
@@ -1357,7 +1357,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 123px;
+  top: 100px;
   left: 960px;
 }
 
@@ -1369,7 +1369,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 101px;
+  top: 32px;
   left: 1080px;
 }
 
@@ -1381,7 +1381,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 28px;
+  top: 33px;
   left: 1200px;
 }
 
@@ -1395,13 +1395,14 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
 .container__about-us .about-us__comment-avatars .main-comment__image-container img {
   width: 18%;
   aspect-ratio: 1 / 1;
+  z-index: 7;
 }
 
 .container__about-us .about-us__comment-avatars .main-comment__image-container:after {
   content: "9.8";
   height: 50px;
   width: 50px;
-  z-index: 5;
+  z-index: 8;
   color: #fff;
   text-align: center;
   background-color: #ff992e;
