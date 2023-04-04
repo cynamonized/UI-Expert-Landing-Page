@@ -79,6 +79,8 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
+        filter: invert(21%) sepia(71%) saturate(6983%) hue-rotate(244deg)
+          brightness(95%) contrast(98%);
       }
 
       h1 {

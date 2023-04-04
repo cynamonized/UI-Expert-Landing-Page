@@ -4,10 +4,10 @@
   $random_number: math.random(100);
   $random_top: math.random(200);
   @if $random_number < 50 {
-    $random_top: 250px + $random_number;
+    $random_top: 0px + $random_number;
     @return $random_top;
   } @else {
-    $random_top: 450px + $random_number;
+    $random_top: 40px + $random_number;
     @return $random_top;
   }
 }
@@ -18,10 +18,10 @@
 
 .container__about-us {
   padding-bottom: 120px;
-  position: relative;
+
   .about-us__titles {
     padding-top: 150px;
-    padding-bottom: 150px;
+    // padding-bottom: 150px;
     @include display_center_y;
     flex-direction: column;
     .title--dark-background {
@@ -32,22 +32,47 @@
     }
   }
 
-  @for $i from 1 through 10 {
-    .blurred-image--#{$i} {
-      position: absolute;
-      left: $i * 100;
-      top: generate_y_pos();
-      transition: 3s;
+  .about-us__comment-avatars {
+    position: relative;
+    .about-us__blurred-image {
     }
-  }
 
-  .about-us__main-comment {
-    @include display_center_y;
-    flex-direction: column;
-    text-align: center;
+    @for $i from 1 through 10 {
+      .blurred-image--#{$i} {
+        position: absolute;
+        // left: $i * 100;
+        @if $i < 6 {
+          left: $i * 80;
+        }
+
+        @if $i >= 6 {
+          left: $i * 120;
+        }
+
+        // @if $i > 7 {
+        //   left: $i * 120;
+        // }
+        top: generate_y_pos();
+        transition: 3s;
+        width: 100px;
+        aspect-ratio: 1/1;
+        filter: blur(8px);
+        cursor: pointer;
+        z-index: 5;
+        // pointer-events: none;
+      }
+    }
 
     .main-comment__image-container {
       position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 150px 0 50px 0;
+
+      img {
+        width: 18%;
+        aspect-ratio: 1/1;
+      }
 
       &::after {
         position: absolute;
@@ -60,13 +85,20 @@
         color: white;
         line-height: 50px;
         border-radius: 50%;
-        top: 80%;
+        top: 82%;
         left: calc(50% - 25px);
+        text-align: center;
       }
     }
+  }
+
+  .about-us__main-comment {
+    @include display_center_y;
+    flex-direction: column;
+    text-align: center;
 
     .main-comment__text {
-      margin-top: 66px;
+      // margin-top: 66px;
       margin-bottom: 20px;
 
       @include font-settings(1.125rem, 300, 1.75rem, white);
@@ -86,6 +118,14 @@
       display: flex;
       gap: 25px;
       margin-top: 30px;
+
+      .navi__button {
+        cursor: pointer;
+        &:hover {
+          filter: invert(30%) sepia(99%) saturate(5538%) hue-rotate(241deg)
+            brightness(100%) contrast(109%);
+        }
+      }
     }
   }
 
