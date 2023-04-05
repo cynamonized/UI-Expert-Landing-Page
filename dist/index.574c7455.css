@@ -1273,7 +1273,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 117px;
+  top: 16px;
   left: 80px;
 }
 
@@ -1285,7 +1285,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 17px;
+  top: 135px;
   left: 160px;
 }
 
@@ -1297,7 +1297,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 40px;
+  top: 101px;
   left: 240px;
 }
 
@@ -1309,7 +1309,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 43px;
+  top: 125px;
   left: 320px;
 }
 
@@ -1321,7 +1321,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 126px;
+  top: 5px;
   left: 400px;
 }
 
@@ -1333,7 +1333,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 123px;
+  top: 139px;
   left: 720px;
 }
 
@@ -1345,7 +1345,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 117px;
+  top: 121px;
   left: 840px;
 }
 
@@ -1357,7 +1357,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 100px;
+  top: 16px;
   left: 960px;
 }
 
@@ -1369,7 +1369,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 32px;
+  top: 48px;
   left: 1080px;
 }
 
@@ -1381,7 +1381,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 33px;
+  top: 139px;
   left: 1200px;
 }
 
