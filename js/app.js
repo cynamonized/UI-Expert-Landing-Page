@@ -1,3 +1,5 @@
+import { commentObjectsArray } from "./comments";
+
 document.addEventListener("DOMContentLoaded", function () {
   //////////////////////////////////////////////////////////////////////
   // Set intervals and moving algoritm
@@ -19,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const moveInterval = setInterval(function () {
       element.style.top = generateYPosJs(100);
-      console.log("odpalam interval");
+      // console.log("odpalam interval");
     }, 6000);
   }
 
@@ -46,13 +48,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   prevButton.addEventListener("click", function (e) {
     console.log("This is a prev button");
-
-
   });
 
   nextButton.addEventListener("click", function () {
     console.log("This is a next button");
   });
+
+  //////////////////////////////////////////////////////////////////////
+  // Selecting Comments elements
+  /////////////////////////////////////////////////////////////////////
+
+  const commentContainer = document.querySelector(".about-us__main-comment");
+  const commentText = commentContainer.querySelector(".main-comment__text");
+  const commentName = commentContainer.querySelector(".main-comment__name");
+  const commentPosition = commentContainer.querySelector(
+    ".main-comment__position"
+  );
 
   //////////////////////////////////////////////////////////////////////
   // Enable clicking on headshots
@@ -94,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     firstMainMoved = true;
 
-    getHeadshots();
+    // getHeadshots();
     e.currentTarget.style.filter = "blur(0px)";
 
     const allCommentsContainer = document.querySelector(
@@ -111,12 +122,18 @@ document.addEventListener("DOMContentLoaded", function () {
     currentMain.classList.remove(`main-comment__image`);
     allCommentsContainer.insertBefore(currentMain, e.currentTarget);
 
-    //////////////////////////
+    ////////////////////////// Finalizing exchange
     currentMainParent.appendChild(e.currentTarget);
     currentMain.classList = e.currentTarget.classList;
     e.currentTarget.classList = "";
     e.currentTarget.classList.add(`main-comment__image`);
-
     e.currentTarget.removeEventListener("click", clickBluured);
+
+    currentMain.addEventListener("click", clickBluured);
+
+    ////////////////////////// Adding proper comment
+    console.log(commentObjectsArray);
   }
 });
+
+console.log(commentObjectsArray);

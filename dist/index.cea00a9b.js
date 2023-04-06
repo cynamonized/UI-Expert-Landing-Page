@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
         element.style.top = generateYPosJs(100);
         const moveInterval = setInterval(function() {
             element.style.top = generateYPosJs(100);
-            console.log("odpalam interval");
+        // console.log("odpalam interval");
         }, 6000);
     }
     function generateYPosJs(spread) {
@@ -41,6 +41,13 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("This is a next button");
     });
     //////////////////////////////////////////////////////////////////////
+    // Selecting Comments elements
+    /////////////////////////////////////////////////////////////////////
+    const commentContainer = document.querySelector(".about-us__main-comment");
+    const commentText = commentContainer.querySelector(".main-comment__text");
+    const commentName = commentContainer.querySelector(".main-comment__name");
+    const commentPosition = commentContainer.querySelector(".main-comment__position");
+    //////////////////////////////////////////////////////////////////////
     // Enable clicking on headshots
     /////////////////////////////////////////////////////////////////////
     let allHeadshots;
@@ -65,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function clickBluured(e) {
         if (firstMainMoved == false) firstMainMovement(firstMain);
         firstMainMoved = true;
-        getHeadshots();
+        // getHeadshots();
         e.currentTarget.style.filter = "blur(0px)";
         const allCommentsContainer = document.querySelector(".about-us__comment-avatars");
         const currentMainParent = allCommentsContainer.querySelector(".main-comment__image-container");
@@ -74,14 +81,15 @@ document.addEventListener("DOMContentLoaded", function() {
         currentMainParent.style.height = "433.99px";
         currentMain.classList.remove(`main-comment__image`);
         allCommentsContainer.insertBefore(currentMain, e.currentTarget);
-        //////////////////////////
+        ////////////////////////// Finalizing exchange
         currentMainParent.appendChild(e.currentTarget);
         currentMain.classList = e.currentTarget.classList;
         e.currentTarget.classList = "";
         e.currentTarget.classList.add(`main-comment__image`);
-        // ???????????????????????????
-        // It doesn't remove at all --> Is there a way to remove even...?
         e.currentTarget.removeEventListener("click", clickBluured);
+        currentMain.addEventListener("click", clickBluured);
+        ////////////////////////// Adding proper comment
+        console.log(commentsArray[1]);
     }
 });
 
