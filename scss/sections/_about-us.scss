@@ -75,7 +75,7 @@
         z-index: 7;
       }
 
-      &::after {
+      .main-comment__rating {
         position: absolute;
         content: "9.8";
         background-color: $color-secondary-orange;

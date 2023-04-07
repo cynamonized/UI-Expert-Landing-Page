@@ -1273,7 +1273,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 46px;
+  top: 31px;
   left: 80px;
 }
 
@@ -1285,7 +1285,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 36px;
+  top: 118px;
   left: 160px;
 }
 
@@ -1297,7 +1297,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 10px;
+  top: 94px;
   left: 240px;
 }
 
@@ -1309,7 +1309,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 19px;
+  top: 34px;
   left: 320px;
 }
 
@@ -1321,7 +1321,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 119px;
+  top: 99px;
   left: 400px;
 }
 
@@ -1333,7 +1333,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 111px;
+  top: 40px;
   left: 720px;
 }
 
@@ -1345,7 +1345,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 137px;
+  top: 22px;
   left: 840px;
 }
 
@@ -1357,7 +1357,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 33px;
+  top: 137px;
   left: 960px;
 }
 
@@ -1369,7 +1369,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 138px;
+  top: 123px;
   left: 1080px;
 }
 
@@ -1381,7 +1381,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 3px;
+  top: 96px;
   left: 1200px;
 }
 
@@ -1398,7 +1398,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 7;
 }
 
-.container__about-us .about-us__comment-avatars .main-comment__image-container:after {
+.container__about-us .about-us__comment-avatars .main-comment__image-container .main-comment__rating {
   content: "9.8";
   height: 50px;
   width: 50px;

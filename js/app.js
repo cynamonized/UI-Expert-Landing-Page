@@ -55,15 +55,40 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   //////////////////////////////////////////////////////////////////////
-  // Selecting Comments elements
+  // Selecting Comments elements and applying 1st main comment
   /////////////////////////////////////////////////////////////////////
 
   const commentContainer = document.querySelector(".about-us__main-comment");
+  const commentRating = document.querySelector(".main-comment__rating");
   const commentText = commentContainer.querySelector(".main-comment__text");
   const commentName = commentContainer.querySelector(".main-comment__name");
   const commentPosition = commentContainer.querySelector(
     ".main-comment__position"
   );
+
+  commentDOMObjects = [
+    commentName,
+    commentPosition,
+    commentText,
+    commentRating,
+  ];
+
+  function exchangeComment(commentNumber) {
+    commentAbstractArray = [
+      commentObjectsArray[commentNumber].name,
+      commentObjectsArray[commentNumber].jobTitle,
+      commentObjectsArray[commentNumber].commentText,
+      commentObjectsArray[commentNumber].rating,
+    ];
+
+    commentDOMObjects.forEach(function (element, i) {
+      element.innerText = commentAbstractArray[i];
+    });
+  }
+
+  exchangeComment(0);
+
+  // commentRating.innerText = commentObjectsArray[0].rating;
 
   //////////////////////////////////////////////////////////////////////
   // Enable clicking on headshots
@@ -102,10 +127,13 @@ document.addEventListener("DOMContentLoaded", function () {
     if (firstMainMoved == false) {
       firstMainMovement(firstMain);
     }
-
     firstMainMoved = true;
 
-    // getHeadshots();
+    const blurredClasses = e.currentTarget.classList;
+    const whichComment = blurredClasses[blurredClasses.length - 1].slice(-1);
+
+    commentText.innerText = commentObjectsArray[whichComment].commentText;
+
     e.currentTarget.style.filter = "blur(0px)";
 
     const allCommentsContainer = document.querySelector(
@@ -117,7 +145,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const currentMain = currentMainParent.querySelector(".main-comment__image");
 
     currentMain.style.filter = "blur(8px)";
-    currentMainParent.style.height = "433.99px";
 
     currentMain.classList.remove(`main-comment__image`);
     allCommentsContainer.insertBefore(currentMain, e.currentTarget);
@@ -132,8 +159,6 @@ document.addEventListener("DOMContentLoaded", function () {
     currentMain.addEventListener("click", clickBluured);
 
     ////////////////////////// Adding proper comment
-    console.log(commentObjectsArray);
+    // console.log(commentObjectsArray[3].imagePath);
   }
 });
-
-console.log(commentObjectsArray);
