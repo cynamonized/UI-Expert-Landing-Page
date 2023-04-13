@@ -559,6 +559,13 @@ function hmrAccept(bundle, id) {
 },{}],"5AKj5":[function(require,module,exports) {
 var _comments = require("./comments");
 document.addEventListener("DOMContentLoaded", function() {
+    // declaring some global variables
+    let commentIndex = 0; // It allows to track current comment for navi buttons
+    //////////////////////////////////////////////////////////////////////
+    // Adding headshots from "backend"
+    // Just for fun, it could be a separate file
+    /////////////////////////////////////////////////////////////////////
+    function updateHeadshots() {}
     //////////////////////////////////////////////////////////////////////
     // Set intervals and moving algoritm
     /////////////////////////////////////////////////////////////////////
@@ -574,7 +581,6 @@ document.addEventListener("DOMContentLoaded", function() {
         element.style.top = generateYPosJs(100);
         const moveInterval = setInterval(function() {
             element.style.top = generateYPosJs(100);
-        // console.log("odpalam interval");
         }, 6000);
     }
     function generateYPosJs(spread) {
@@ -588,18 +594,6 @@ document.addEventListener("DOMContentLoaded", function() {
             return randomTop + "px";
         }
     }
-    //////////////////////////////////////////////////////////////////////
-    // NAVI - Currently not working
-    /////////////////////////////////////////////////////////////////////
-    const naviContainer = document.querySelector(".main-comment__navi");
-    const prevButton = naviContainer.querySelector(".navi__button--prev");
-    const nextButton = naviContainer.querySelector(".navi__button--next");
-    prevButton.addEventListener("click", function(e) {
-        console.log("This is a prev button");
-    });
-    nextButton.addEventListener("click", function() {
-        console.log("This is a next button");
-    });
     //////////////////////////////////////////////////////////////////////
     // Selecting Comments elements and applying 1st main comment
     /////////////////////////////////////////////////////////////////////
@@ -615,7 +609,7 @@ document.addEventListener("DOMContentLoaded", function() {
         commentRating
     ];
     function exchangeComment(commentNumber) {
-        commentAbstractArray = [
+        const commentAbstractArray = [
             (0, _comments.commentObjectsArray)[commentNumber].name,
             (0, _comments.commentObjectsArray)[commentNumber].jobTitle,
             (0, _comments.commentObjectsArray)[commentNumber].commentText,
@@ -628,6 +622,11 @@ document.addEventListener("DOMContentLoaded", function() {
     exchangeComment(0);
     // commentRating.innerText = commentObjectsArray[0].rating;
     //////////////////////////////////////////////////////////////////////
+    // Selecting DOM containers for all comments and main comment
+    /////////////////////////////////////////////////////////////////////
+    const allCommentsContainer = document.querySelector(".about-us__comment-avatars");
+    const currentMainParent = allCommentsContainer.querySelector(".main-comment__image-container");
+    //////////////////////////////////////////////////////////////////////
     // Enable clicking on headshots
     /////////////////////////////////////////////////////////////////////
     let allHeadshots;
@@ -636,6 +635,9 @@ document.addEventListener("DOMContentLoaded", function() {
     };
     getHeadshots();
     allHeadshots.forEach(function(element, i) {
+        // SOLVE ADDING IMAGES PATHS FROM AN ARRAY - SEEMS TO BE PARCEL ISSUE
+        // element.src = `${commentObjectsArray[i].imagePath}`;
+        // element.src = require(`${commentObjectsArray[i].imagePath}`);
         element.addEventListener("click", clickBluured);
     });
     // Below ads movement to first main comment when becomes blurred headshot
@@ -644,34 +646,63 @@ document.addEventListener("DOMContentLoaded", function() {
         randomPosInterval(firstMain);
     }
     let firstMainMoved = false;
-    // console.log(firstMain);
-    // firstMain.addEventListener("click", firstMainMovement);
     //////////////////////////////////////////////////////////////////////
-    // Click function declaration
+    // Click function declaration -- MAIN CLICK EVENT
     /////////////////////////////////////////////////////////////////////
     function clickBluured(e) {
         if (firstMainMoved == false) firstMainMovement(firstMain);
         firstMainMoved = true;
         const blurredClasses = e.currentTarget.classList;
-        const whichComment = blurredClasses[blurredClasses.length - 1].slice(-1);
-        commentText.innerText = (0, _comments.commentObjectsArray)[whichComment].commentText;
+        let whichComment = blurredClasses[blurredClasses.length - 1].slice(-1);
+        commentIndex = whichComment; // so navi knows which comment is main now
+        // If user picks last comment, it needs to pick up last 2 characters (not 1)
+        if (whichComment == 0) whichComment = blurredClasses[blurredClasses.length - 1].slice(-2);
+        //
+        //////////////////////////////////////////////////////////////////////
+        // Switching comments and managing array with the comments
+        /////////////////////////////////////////////////////////////////////
+        // Change the comment --> ADD OTHER LABELS THAN JUST COMMENT!!!!
+        // commentText.innerText = commentObjectsArray[whichComment].commentText;
+        exchangeComment(whichComment);
+        // Place new main comment in front of the array
+        (0, _comments.commentObjectsArray).unshift((0, _comments.commentObjectsArray)[whichComment]);
+        whichComment++;
+        (0, _comments.commentObjectsArray).splice(whichComment, 1);
+        // Place old main comment in the PREVIOUS place of new main comment in the array
+        (0, _comments.commentObjectsArray).splice(whichComment, 0, (0, _comments.commentObjectsArray)[1]);
+        (0, _comments.commentObjectsArray).splice(1, 1);
+        //////////////////////////////////////////////////////////////////////
+        // Handling image/DOM object swap
+        /////////////////////////////////////////////////////////////////////
         e.currentTarget.style.filter = "blur(0px)";
-        const allCommentsContainer = document.querySelector(".about-us__comment-avatars");
-        const currentMainParent = allCommentsContainer.querySelector(".main-comment__image-container");
         const currentMain = currentMainParent.querySelector(".main-comment__image");
         currentMain.style.filter = "blur(8px)";
         currentMain.classList.remove(`main-comment__image`);
         allCommentsContainer.insertBefore(currentMain, e.currentTarget);
-        ////////////////////////// Finalizing exchange
+        //Finalizing exchange
         currentMainParent.appendChild(e.currentTarget);
         currentMain.classList = e.currentTarget.classList;
         e.currentTarget.classList = "";
         e.currentTarget.classList.add(`main-comment__image`);
         e.currentTarget.removeEventListener("click", clickBluured);
         currentMain.addEventListener("click", clickBluured);
-    ////////////////////////// Adding proper comment
-    // console.log(commentObjectsArray[3].imagePath);
     }
+    //////////////////////////////////////////////////////////////////////
+    // NAVI - Currently not working
+    /////////////////////////////////////////////////////////////////////
+    const naviContainer = document.querySelector(".main-comment__navi");
+    const prevButton = naviContainer.querySelector(".navi__button--prev");
+    const nextButton = naviContainer.querySelector(".navi__button--next");
+    prevButton.addEventListener("click", function(e) {
+        if (commentIndex > 0) commentIndex--;
+        else commentIndex = 10;
+        exchangeComment(commentIndex);
+    });
+    nextButton.addEventListener("click", function() {
+        if (commentIndex < 10) commentIndex++;
+        else commentIndex = 0;
+        exchangeComment(commentIndex);
+    });
 });
 
 },{"./comments":"5H1XM"}],"5H1XM":[function(require,module,exports) {
