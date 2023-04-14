@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // declaring some global variables
 
   let commentIndex = 0; // It allows to track current comment for navi buttons
+  console.log(commentIndex);
 
   //////////////////////////////////////////////////////////////////////
   // Adding headshots from "backend"
@@ -130,27 +131,26 @@ document.addEventListener("DOMContentLoaded", function () {
   /////////////////////////////////////////////////////////////////////
 
   function clickBluured(e) {
+    // if this is first move, apply movement to the first main
     if (firstMainMoved == false) {
       firstMainMovement(firstMain);
     }
     firstMainMoved = true;
 
-    const blurredClasses = e.currentTarget.classList;
-    let whichComment = blurredClasses[blurredClasses.length - 1].slice(-1);
-    commentIndex = whichComment; // so navi knows which comment is main now
-
-    // If user picks last comment, it needs to pick up last 2 characters (not 1)
-    if (whichComment == 0) {
-      whichComment = blurredClasses[blurredClasses.length - 1].slice(-2);
-    }
-    //
-
     //////////////////////////////////////////////////////////////////////
     // Switching comments and managing array with the comments
     /////////////////////////////////////////////////////////////////////
 
-    // Change the comment --> ADD OTHER LABELS THAN JUST COMMENT!!!!
-    // commentText.innerText = commentObjectsArray[whichComment].commentText;
+    // picking up which comment was chosen - based on his class
+    const blurredClasses = e.currentTarget.classList;
+    let whichComment = blurredClasses[blurredClasses.length - 1].slice(-1);
+    commentIndex = whichComment; // so navi knows which comment is main now
+
+    if (whichComment == 0) {
+      whichComment = blurredClasses[blurredClasses.length - 1].slice(-2);
+    }
+
+    // apply the comment change
     exchangeComment(whichComment);
 
     // Place new main comment in front of the array
@@ -166,12 +166,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // Handling image/DOM object swap
     /////////////////////////////////////////////////////////////////////
 
+    //////////////////////////////////////////////////////////////////////
+    // BELOW NEEDS TO BE CONVERTED TO A FUNCTION - NAVI USES THE SAME SET
+    /////////////////////////////////////////////////////////////////////
+
     e.currentTarget.style.filter = "blur(0px)";
-
     const currentMain = currentMainParent.querySelector(".main-comment__image");
-
     currentMain.style.filter = "blur(8px)";
-
     currentMain.classList.remove(`main-comment__image`);
     allCommentsContainer.insertBefore(currentMain, e.currentTarget);
 
@@ -185,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   //////////////////////////////////////////////////////////////////////
-  // NAVI - Currently not working
+  // NAVI - Working partially
   /////////////////////////////////////////////////////////////////////
 
   const naviContainer = document.querySelector(".main-comment__navi");
@@ -199,14 +200,60 @@ document.addEventListener("DOMContentLoaded", function () {
       commentIndex = 10;
     }
     exchangeComment(commentIndex);
+
+    // CHECKS
+    console.log(commentIndex);
+    console.log(allHeadshots[commentIndex - 1]);
+    //
+
+    //////////////////////////////////////////////////////////////////////////////
+    allHeadshots[commentIndex - 1].style.filter = "blur(0px)";
+    const currentMain = currentMainParent.querySelector(".main-comment__image");
+    currentMain.style.filter = "blur(8px)";
+    currentMain.classList.remove(`main-comment__image`);
+    allCommentsContainer.insertBefore(
+      currentMain,
+      allHeadshots[commentIndex - 1]
+    );
+
+    currentMainParent.appendChild(allHeadshots[commentIndex - 1]);
+    currentMain.classList = allHeadshots[commentIndex - 1].classList;
+    allHeadshots[commentIndex - 1].classList = "";
+    allHeadshots[commentIndex - 1].classList.add(`main-comment__image`);
+    allHeadshots[commentIndex - 1].removeEventListener("click", clickBluured);
+    currentMain.addEventListener("click", clickBluured);
+    //////////////////////////////////////////////////////////////////////////////
   });
 
-  nextButton.addEventListener("click", function () {
+  nextButton.addEventListener("click", function (e) {
     if (commentIndex < 10) {
       commentIndex++;
     } else {
       commentIndex = 0;
     }
     exchangeComment(commentIndex);
+
+    // CHECKS
+    console.log(commentIndex);
+    console.log(allHeadshots[commentIndex - 1]);
+    //
+
+    //////////////////////////////////////////////////////////////////////////////
+    allHeadshots[commentIndex - 1].style.filter = "blur(0px)";
+    const currentMain = currentMainParent.querySelector(".main-comment__image");
+    currentMain.style.filter = "blur(8px)";
+    currentMain.classList.remove(`main-comment__image`);
+    allCommentsContainer.insertBefore(
+      currentMain,
+      allHeadshots[commentIndex - 1]
+    );
+
+    currentMainParent.appendChild(allHeadshots[commentIndex - 1]);
+    currentMain.classList = allHeadshots[commentIndex - 1].classList;
+    allHeadshots[commentIndex - 1].classList = "";
+    allHeadshots[commentIndex - 1].classList.add(`main-comment__image`);
+    allHeadshots[commentIndex - 1].removeEventListener("click", clickBluured);
+    currentMain.addEventListener("click", clickBluured);
+    //////////////////////////////////////////////////////////////////////////////
   });
 });
