@@ -195,6 +195,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function reshuffleCommentsArray(inputIndex = commentIndex) {
+    // What a stupid move, import commentIndex as inputIndex,
+    // but use partially both.
+    // should use inputIndex ONLY and give its value back to commentIndex
+    // before function ends. Will it harm clickBlurred() anyhow?
+
     if (currenMovementIsNavi == true) {
       commentIndex--;
       currenMovementIsNavi = false;
