@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // declaring some global variables
 
   let commentIndex = 0; // It allows to track current comment for navi buttons
-  console.log(commentIndex);
 
   //////////////////////////////////////////////////////////////////////
   // Adding headshots from "backend"
@@ -194,19 +193,33 @@ document.addEventListener("DOMContentLoaded", function () {
   const nextButton = naviContainer.querySelector(".navi__button--next");
 
   prevButton.addEventListener("click", function (e) {
-    if (commentIndex > 0) {
+    if (commentIndex > 1) {
       commentIndex--;
     } else {
       commentIndex = 10;
     }
+
     exchangeComment(commentIndex);
 
-    // CHECKS
-    console.log(commentIndex);
-    console.log(allHeadshots[commentIndex - 1]);
-    //
+    // 123 123 123 --> Function would start from here
+    // 123 123 123 Above is specific for <> Navi
+    // Above exchange comment should be in the function too(??)
+    // It is in the
 
     //////////////////////////////////////////////////////////////////////////////
+    // Place new main comment in front of the array
+
+    console.log(`${commentIndex + 1}`);
+
+    commentObjectsArray.unshift(commentObjectsArray[commentIndex]);
+    commentObjectsArray.splice(commentIndex + 1, 1);
+
+    // Place old main comment in the PREVIOUS place of new main comment in the array
+    commentObjectsArray.splice(commentIndex + 1, 0, commentObjectsArray[1]);
+    commentObjectsArray.splice(1, 1);
+
+    //////////////////////////////////////////////////////////////////////////////
+
     allHeadshots[commentIndex - 1].style.filter = "blur(0px)";
     const currentMain = currentMainParent.querySelector(".main-comment__image");
     currentMain.style.filter = "blur(8px)";
@@ -222,23 +235,28 @@ document.addEventListener("DOMContentLoaded", function () {
     allHeadshots[commentIndex - 1].classList.add(`main-comment__image`);
     allHeadshots[commentIndex - 1].removeEventListener("click", clickBluured);
     currentMain.addEventListener("click", clickBluured);
-    //////////////////////////////////////////////////////////////////////////////
+    getHeadshots();
   });
 
   nextButton.addEventListener("click", function (e) {
     if (commentIndex < 10) {
       commentIndex++;
     } else {
-      commentIndex = 0;
+      commentIndex = 1;
     }
+
     exchangeComment(commentIndex);
-
-    // CHECKS
-    console.log(commentIndex);
-    console.log(allHeadshots[commentIndex - 1]);
-    //
-
+    console.log(`${commentIndex + 1}`);
     //////////////////////////////////////////////////////////////////////////////
+    // Place new main comment in front of the array
+    commentObjectsArray.unshift(commentObjectsArray[commentIndex]);
+    commentObjectsArray.splice(commentIndex + 1, 1);
+
+    // Place old main comment in the PREVIOUS place of new main comment in the array
+    commentObjectsArray.splice(commentIndex + 1, 0, commentObjectsArray[1]);
+    commentObjectsArray.splice(1, 1);
+    //////////////////////////////////////////////////////////////////////////////
+
     allHeadshots[commentIndex - 1].style.filter = "blur(0px)";
     const currentMain = currentMainParent.querySelector(".main-comment__image");
     currentMain.style.filter = "blur(8px)";
@@ -254,6 +272,6 @@ document.addEventListener("DOMContentLoaded", function () {
     allHeadshots[commentIndex - 1].classList.add(`main-comment__image`);
     allHeadshots[commentIndex - 1].removeEventListener("click", clickBluured);
     currentMain.addEventListener("click", clickBluured);
-    //////////////////////////////////////////////////////////////////////////////
+    getHeadshots();
   });
 });
