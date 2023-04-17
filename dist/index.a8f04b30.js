@@ -561,6 +561,8 @@ var _comments = require("./comments");
 document.addEventListener("DOMContentLoaded", function() {
     // declaring some global variables
     let commentIndex = 0; // It allows to track current comment for navi buttons
+    let firstMainMoved = false;
+    let currenMovementIsNavi = false;
     //////////////////////////////////////////////////////////////////////
     // Adding headshots from "backend"
     // Just for fun, it could be a separate file
@@ -599,9 +601,9 @@ document.addEventListener("DOMContentLoaded", function() {
     /////////////////////////////////////////////////////////////////////
     const commentContainer = document.querySelector(".about-us__main-comment");
     const commentRating = document.querySelector(".main-comment__rating");
-    const commentText = commentContainer.querySelector(".main-comment__text");
     const commentName = commentContainer.querySelector(".main-comment__name");
     const commentPosition = commentContainer.querySelector(".main-comment__position");
+    const commentText = commentContainer.querySelector(".main-comment__text");
     commentDOMObjects = [
         commentName,
         commentPosition,
@@ -620,7 +622,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
     exchangeComment(0);
-    // commentRating.innerText = commentObjectsArray[0].rating;
     //////////////////////////////////////////////////////////////////////
     // Selecting DOM containers for all comments and main comment
     /////////////////////////////////////////////////////////////////////
@@ -645,112 +646,74 @@ document.addEventListener("DOMContentLoaded", function() {
     function firstMainMovement(firstMain) {
         randomPosInterval(firstMain);
     }
-    let firstMainMoved = false;
     //////////////////////////////////////////////////////////////////////
-    // Click function declaration -- MAIN CLICK EVENT
+    // CLICK function declaration -- MAIN CLICK EVENT
     /////////////////////////////////////////////////////////////////////
     function clickBluured(e) {
         // if this is first move, apply movement to the first main
         if (firstMainMoved == false) firstMainMovement(firstMain);
         firstMainMoved = true;
-        //////////////////////////////////////////////////////////////////////
-        // Switching comments and managing array with the comments
-        /////////////////////////////////////////////////////////////////////
         // picking up which comment was chosen - based on his class
         const blurredClasses = e.currentTarget.classList;
-        let whichComment = blurredClasses[blurredClasses.length - 1].slice(-1);
-        commentIndex = whichComment; // so navi knows which comment is main now
+        let whichComment = Number(blurredClasses[blurredClasses.length - 1].slice(-1));
+        commentIndex = whichComment - 1; // so navi knows which comment is main now
         if (whichComment == 0) whichComment = blurredClasses[blurredClasses.length - 1].slice(-2);
         // apply the comment change
         exchangeComment(whichComment);
-        // Place new main comment in front of the array
-        (0, _comments.commentObjectsArray).unshift((0, _comments.commentObjectsArray)[whichComment]);
-        whichComment++;
-        (0, _comments.commentObjectsArray).splice(whichComment, 1);
-        // Place old main comment in the PREVIOUS place of new main comment in the array
-        (0, _comments.commentObjectsArray).splice(whichComment, 0, (0, _comments.commentObjectsArray)[1]);
-        (0, _comments.commentObjectsArray).splice(1, 1);
-        //////////////////////////////////////////////////////////////////////
-        // Handling image/DOM object swap
-        /////////////////////////////////////////////////////////////////////
-        //////////////////////////////////////////////////////////////////////
-        // BELOW NEEDS TO BE CONVERTED TO A FUNCTION - NAVI USES THE SAME SET
-        /////////////////////////////////////////////////////////////////////
-        e.currentTarget.style.filter = "blur(0px)";
-        const currentMain = currentMainParent.querySelector(".main-comment__image");
-        currentMain.style.filter = "blur(8px)";
-        currentMain.classList.remove(`main-comment__image`);
-        allCommentsContainer.insertBefore(currentMain, e.currentTarget);
-        //Finalizing exchange
-        currentMainParent.appendChild(e.currentTarget);
-        currentMain.classList = e.currentTarget.classList;
-        e.currentTarget.classList = "";
-        e.currentTarget.classList.add(`main-comment__image`);
-        e.currentTarget.removeEventListener("click", clickBluured);
-        currentMain.addEventListener("click", clickBluured);
+        // reshuffleCommentsArray(whichComment);
+        changingHeadshot(e.currentTarget);
     }
     //////////////////////////////////////////////////////////////////////
-    // NAVI - Working partially
+    // NAVI
     /////////////////////////////////////////////////////////////////////
     const naviContainer = document.querySelector(".main-comment__navi");
     const prevButton = naviContainer.querySelector(".navi__button--prev");
     const nextButton = naviContainer.querySelector(".navi__button--next");
     prevButton.addEventListener("click", function(e) {
+        currenMovementIsNavi = true;
         if (commentIndex > 1) commentIndex--;
         else commentIndex = 10;
         exchangeComment(commentIndex);
-        // 123 123 123 --> Function would start from here
-        // 123 123 123 Above is specific for <> Navi
-        // Above exchange comment should be in the function too(??)
-        // It is in the
-        //////////////////////////////////////////////////////////////////////////////
-        // Place new main comment in front of the array
-        console.log(`${commentIndex + 1}`);
-        (0, _comments.commentObjectsArray).unshift((0, _comments.commentObjectsArray)[commentIndex]);
-        (0, _comments.commentObjectsArray).splice(commentIndex + 1, 1);
-        // Place old main comment in the PREVIOUS place of new main comment in the array
-        (0, _comments.commentObjectsArray).splice(commentIndex + 1, 0, (0, _comments.commentObjectsArray)[1]);
-        (0, _comments.commentObjectsArray).splice(1, 1);
-        //////////////////////////////////////////////////////////////////////////////
-        allHeadshots[commentIndex - 1].style.filter = "blur(0px)";
-        const currentMain = currentMainParent.querySelector(".main-comment__image");
-        currentMain.style.filter = "blur(8px)";
-        currentMain.classList.remove(`main-comment__image`);
-        allCommentsContainer.insertBefore(currentMain, allHeadshots[commentIndex - 1]);
-        currentMainParent.appendChild(allHeadshots[commentIndex - 1]);
-        currentMain.classList = allHeadshots[commentIndex - 1].classList;
-        allHeadshots[commentIndex - 1].classList = "";
-        allHeadshots[commentIndex - 1].classList.add(`main-comment__image`);
-        allHeadshots[commentIndex - 1].removeEventListener("click", clickBluured);
-        currentMain.addEventListener("click", clickBluured);
-        getHeadshots();
+        changingHeadshot(allHeadshots[commentIndex - 1]);
+        reshuffleCommentsArray();
     });
     nextButton.addEventListener("click", function(e) {
+        // currenMovementIsNavi = true;
         if (commentIndex < 10) commentIndex++;
         else commentIndex = 1;
         exchangeComment(commentIndex);
-        console.log(`${commentIndex + 1}`);
-        //////////////////////////////////////////////////////////////////////////////
-        // Place new main comment in front of the array
-        (0, _comments.commentObjectsArray).unshift((0, _comments.commentObjectsArray)[commentIndex]);
-        (0, _comments.commentObjectsArray).splice(commentIndex + 1, 1);
-        // Place old main comment in the PREVIOUS place of new main comment in the array
-        (0, _comments.commentObjectsArray).splice(commentIndex + 1, 0, (0, _comments.commentObjectsArray)[1]);
-        (0, _comments.commentObjectsArray).splice(1, 1);
-        //////////////////////////////////////////////////////////////////////////////
-        allHeadshots[commentIndex - 1].style.filter = "blur(0px)";
+        changingHeadshot(allHeadshots[commentIndex - 1]);
+        reshuffleCommentsArray();
+    });
+    function changingHeadshot(chosenHeadshot) {
+        chosenHeadshot.style.filter = "blur(0px)";
         const currentMain = currentMainParent.querySelector(".main-comment__image");
         currentMain.style.filter = "blur(8px)";
         currentMain.classList.remove(`main-comment__image`);
-        allCommentsContainer.insertBefore(currentMain, allHeadshots[commentIndex - 1]);
-        currentMainParent.appendChild(allHeadshots[commentIndex - 1]);
-        currentMain.classList = allHeadshots[commentIndex - 1].classList;
-        allHeadshots[commentIndex - 1].classList = "";
-        allHeadshots[commentIndex - 1].classList.add(`main-comment__image`);
-        allHeadshots[commentIndex - 1].removeEventListener("click", clickBluured);
+        allCommentsContainer.insertBefore(currentMain, chosenHeadshot);
+        currentMainParent.appendChild(chosenHeadshot);
+        currentMain.classList = chosenHeadshot.classList;
+        chosenHeadshot.classList = "";
+        chosenHeadshot.classList.add(`main-comment__image`);
+        chosenHeadshot.removeEventListener("click", clickBluured);
         currentMain.addEventListener("click", clickBluured);
         getHeadshots();
-    });
+    }
+    function reshuffleCommentsArray(inputIndex = commentIndex) {
+        if (currenMovementIsNavi == true) {
+            commentIndex--;
+            currenMovementIsNavi = false;
+        }
+        // Place new main comment in front of the array
+        (0, _comments.commentObjectsArray).unshift((0, _comments.commentObjectsArray)[inputIndex]);
+        inputIndex++;
+        (0, _comments.commentObjectsArray).splice(inputIndex, 1);
+        // Place old main comment in the PREVIOUS place of new main comment in the array
+        (0, _comments.commentObjectsArray).splice(inputIndex, 0, (0, _comments.commentObjectsArray)[1]);
+        (0, _comments.commentObjectsArray).splice(1, 1);
+        console.log(commentIndex + 1);
+        console.log((0, _comments.commentObjectsArray));
+    }
 });
 
 },{"./comments":"5H1XM"}],"5H1XM":[function(require,module,exports) {
