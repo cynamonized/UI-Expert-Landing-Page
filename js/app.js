@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // apply the comment change
     exchangeComment(whichComment);
-    // reshuffleCommentsArray(whichComment);
+    reshuffleCommentsArray(whichComment);
     changingHeadshot(e.currentTarget);
   }
 
@@ -153,16 +153,19 @@ document.addEventListener("DOMContentLoaded", function () {
   const nextButton = naviContainer.querySelector(".navi__button--next");
 
   prevButton.addEventListener("click", function (e) {
-    currenMovementIsNavi = true;
-    if (commentIndex > 1) {
+    console.log(`entry to the function: ${commentIndex}`);
+    // currenMovementIsNavi = true;
+    if (commentIndex >= 1) {
       commentIndex--;
     } else {
-      commentIndex = 10;
+      commentIndex = 9;
     }
-
-    exchangeComment(commentIndex);
-    changingHeadshot(allHeadshots[commentIndex - 1]);
-    reshuffleCommentsArray();
+    console.log(`comment index after change: ${commentIndex}`);
+    exchangeComment(commentIndex + 1);
+    changingHeadshot(allHeadshots[commentIndex]);
+    reshuffleCommentsArray(commentIndex + 1);
+    console.log(`should be the same as above: ${commentIndex}`);
+    console.log(commentObjectsArray);
   });
 
   nextButton.addEventListener("click", function (e) {
@@ -178,6 +181,23 @@ document.addEventListener("DOMContentLoaded", function () {
     reshuffleCommentsArray();
   });
 
+  function reshuffleCommentsArray(inputIndex = commentIndex) {
+    // if (currenMovementIsNavi == true) {
+    //   inputIndex--;
+    //   currenMovementIsNavi = false;
+    // }
+    // Place new main comment in front of the array
+    commentObjectsArray.unshift(commentObjectsArray[inputIndex]);
+    inputIndex++;
+    commentObjectsArray.splice(inputIndex, 1);
+
+    // Place old main comment in the PREVIOUS place of new main comment in the array
+    commentObjectsArray.splice(inputIndex, 0, commentObjectsArray[1]);
+    commentObjectsArray.splice(1, 1);
+    // console.log(commentIndex);
+    // console.log(commentObjectsArray);
+  }
+
   function changingHeadshot(chosenHeadshot) {
     chosenHeadshot.style.filter = "blur(0px)";
     const currentMain = currentMainParent.querySelector(".main-comment__image");
@@ -192,27 +212,5 @@ document.addEventListener("DOMContentLoaded", function () {
     chosenHeadshot.removeEventListener("click", clickBluured);
     currentMain.addEventListener("click", clickBluured);
     getHeadshots();
-  }
-
-  function reshuffleCommentsArray(inputIndex = commentIndex) {
-    // What a stupid move, import commentIndex as inputIndex,
-    // but use partially both.
-    // should use inputIndex ONLY and give its value back to commentIndex
-    // before function ends. Will it harm clickBlurred() anyhow?
-
-    if (currenMovementIsNavi == true) {
-      commentIndex--;
-      currenMovementIsNavi = false;
-    }
-    // Place new main comment in front of the array
-    commentObjectsArray.unshift(commentObjectsArray[inputIndex]);
-    inputIndex++;
-    commentObjectsArray.splice(inputIndex, 1);
-
-    // Place old main comment in the PREVIOUS place of new main comment in the array
-    commentObjectsArray.splice(inputIndex, 0, commentObjectsArray[1]);
-    commentObjectsArray.splice(1, 1);
-    console.log(commentIndex + 1);
-    console.log(commentObjectsArray);
   }
 });
