@@ -1,16 +1,12 @@
 import { commentObjectsArray } from "./comments";
 
 document.addEventListener("DOMContentLoaded", function () {
-  // declaring some global variables
-  let commentIndex = 0; // It allows to track current comment for navi buttons
+  let commentIndex = 0;
   let firstMainMoved = false;
-  let currenMovementIsNavi = false;
   //////////////////////////////////////////////////////////////////////
   // Adding headshots from "backend"
   // Just for fun, it could be a separate file
   /////////////////////////////////////////////////////////////////////
-
-  function updateHeadshots() {}
 
   //////////////////////////////////////////////////////////////////////
   // Set intervals and moving algoritm
@@ -153,19 +149,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const nextButton = naviContainer.querySelector(".navi__button--next");
 
   prevButton.addEventListener("click", function (e) {
-    console.log(`entry to the function: ${commentIndex}`);
-    // currenMovementIsNavi = true;
     if (commentIndex >= 1) {
       commentIndex--;
     } else {
       commentIndex = 9;
     }
-    console.log(`comment index after change: ${commentIndex}`);
+
     exchangeComment(commentIndex + 1);
     changingHeadshot(allHeadshots[commentIndex]);
     reshuffleCommentsArray(commentIndex + 1);
-    console.log(`should be the same as above: ${commentIndex}`);
-    console.log(commentObjectsArray);
   });
 
   nextButton.addEventListener("click", function (e) {
@@ -182,10 +174,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function reshuffleCommentsArray(inputIndex = commentIndex) {
-    // if (currenMovementIsNavi == true) {
-    //   inputIndex--;
-    //   currenMovementIsNavi = false;
-    // }
     // Place new main comment in front of the array
     commentObjectsArray.unshift(commentObjectsArray[inputIndex]);
     inputIndex++;
@@ -194,8 +182,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Place old main comment in the PREVIOUS place of new main comment in the array
     commentObjectsArray.splice(inputIndex, 0, commentObjectsArray[1]);
     commentObjectsArray.splice(1, 1);
-    // console.log(commentIndex);
-    // console.log(commentObjectsArray);
   }
 
   function changingHeadshot(chosenHeadshot) {

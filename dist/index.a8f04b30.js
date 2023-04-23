@@ -559,15 +559,12 @@ function hmrAccept(bundle, id) {
 },{}],"5AKj5":[function(require,module,exports) {
 var _comments = require("./comments");
 document.addEventListener("DOMContentLoaded", function() {
-    // declaring some global variables
-    let commentIndex = 0; // It allows to track current comment for navi buttons
+    let commentIndex = 0;
     let firstMainMoved = false;
-    let currenMovementIsNavi = false;
     //////////////////////////////////////////////////////////////////////
     // Adding headshots from "backend"
     // Just for fun, it could be a separate file
     /////////////////////////////////////////////////////////////////////
-    function updateHeadshots() {}
     //////////////////////////////////////////////////////////////////////
     // Set intervals and moving algoritm
     /////////////////////////////////////////////////////////////////////
@@ -670,16 +667,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const prevButton = naviContainer.querySelector(".navi__button--prev");
     const nextButton = naviContainer.querySelector(".navi__button--next");
     prevButton.addEventListener("click", function(e) {
-        console.log(`entry to the function: ${commentIndex}`);
-        // currenMovementIsNavi = true;
         if (commentIndex >= 1) commentIndex--;
         else commentIndex = 9;
-        console.log(`comment index after change: ${commentIndex}`);
         exchangeComment(commentIndex + 1);
         changingHeadshot(allHeadshots[commentIndex]);
         reshuffleCommentsArray(commentIndex + 1);
-        console.log(`should be the same as above: ${commentIndex}`);
-        console.log((0, _comments.commentObjectsArray));
     });
     nextButton.addEventListener("click", function(e) {
         // currenMovementIsNavi = true;
@@ -690,10 +682,6 @@ document.addEventListener("DOMContentLoaded", function() {
         reshuffleCommentsArray();
     });
     function reshuffleCommentsArray(inputIndex = commentIndex) {
-        // if (currenMovementIsNavi == true) {
-        //   inputIndex--;
-        //   currenMovementIsNavi = false;
-        // }
         // Place new main comment in front of the array
         (0, _comments.commentObjectsArray).unshift((0, _comments.commentObjectsArray)[inputIndex]);
         inputIndex++;
@@ -701,8 +689,6 @@ document.addEventListener("DOMContentLoaded", function() {
         // Place old main comment in the PREVIOUS place of new main comment in the array
         (0, _comments.commentObjectsArray).splice(inputIndex, 0, (0, _comments.commentObjectsArray)[1]);
         (0, _comments.commentObjectsArray).splice(1, 1);
-    // console.log(commentIndex);
-    // console.log(commentObjectsArray);
     }
     function changingHeadshot(chosenHeadshot) {
         chosenHeadshot.style.filter = "blur(0px)";
