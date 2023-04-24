@@ -1,7 +1,8 @@
 import { commentObjectsArray } from "./comments";
 
 document.addEventListener("DOMContentLoaded", function () {
-  let commentIndex = 0;
+  // declaring some global variables
+  let commentIndex = 0; // It allows to track current comment for navi buttons
   let firstMainMoved = false;
   //////////////////////////////////////////////////////////////////////
   // Adding headshots from "backend"
@@ -16,11 +17,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // Because of Transition == randomDelay && TransitionDelay == randomDelay;
   // So that way it doesn't cut animation in half
 
-  let blurredImages = document.querySelectorAll(".about-us__blurred-image");
+  let blurredImages = document.querySelectorAll(".about-us__blurred-image"); // implemented
 
-  blurredImages.forEach(randomPosInterval);
+  blurredImages.forEach(randomPosInterval); // implemented
 
   function randomPosInterval(element) {
+    // implemented
     const randomDelay = Math.random() * 3;
     element.style.transition = `${randomDelay} cubic-bezier(0.62, 0.32, 0, 0.9)`;
     element.style.transitionDelay = `${randomDelay}s`;
@@ -32,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function generateYPosJs(spread) {
+    // implemented
     const randomNumber = Math.random() * 100;
     let randomTop = Math.random() * spread;
 
@@ -47,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //////////////////////////////////////////////////////////////////////
   // Selecting Comments elements and applying 1st main comment
   /////////////////////////////////////////////////////////////////////
-
+  // implemented
   const commentContainer = document.querySelector(".about-us__main-comment");
   const commentRating = document.querySelector(".main-comment__rating");
   const commentName = commentContainer.querySelector(".main-comment__name");
@@ -57,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const commentText = commentContainer.querySelector(".main-comment__text");
 
   commentDOMObjects = [
+    // implemented
     commentName,
     commentPosition,
     commentText,
@@ -64,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   function exchangeComment(commentNumber) {
+    // implemented
     const commentAbstractArray = [
       commentObjectsArray[commentNumber].name,
       commentObjectsArray[commentNumber].jobTitle,
@@ -72,34 +77,36 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     commentDOMObjects.forEach(function (element, i) {
+      // implemented
       element.innerText = commentAbstractArray[i];
     });
   }
 
-  exchangeComment(0);
+  exchangeComment(0); // implemented
 
   //////////////////////////////////////////////////////////////////////
   // Selecting DOM containers for all comments and main comment
   /////////////////////////////////////////////////////////////////////
 
   const allCommentsContainer = document.querySelector(
-    ".about-us__comment-avatars"
+    ".about-us__comment-avatars" // implemented
   );
   const currentMainParent = allCommentsContainer.querySelector(
-    ".main-comment__image-container"
+    ".main-comment__image-container" // implemented
   );
 
   //////////////////////////////////////////////////////////////////////
   // Enable clicking on headshots
   /////////////////////////////////////////////////////////////////////
-  let allHeadshots;
+  let allHeadshots; // implemented
   const getHeadshots = function () {
     allHeadshots = document.querySelectorAll(".headshot");
-  };
+  }; // implemented
 
-  getHeadshots();
+  getHeadshots(); // implemented
 
   allHeadshots.forEach(function (element, i) {
+    // implemented
     // SOLVE ADDING IMAGES PATHS FROM AN ARRAY - SEEMS TO BE PARCEL ISSUE
     // element.src = `${commentObjectsArray[i].imagePath}`;
     // element.src = require(`${commentObjectsArray[i].imagePath}`);
@@ -107,8 +114,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Below ads movement to first main comment when becomes blurred headshot
-  const firstMain = document.querySelector(".main-comment__image");
+  const firstMain = document.querySelector(".main-comment__image"); // implemented
   function firstMainMovement(firstMain) {
+    // implemented
     randomPosInterval(firstMain);
   }
 
@@ -117,6 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
   /////////////////////////////////////////////////////////////////////
 
   function clickBluured(e) {
+    // implemented
     // if this is first move, apply movement to the first main
     if (firstMainMoved == false) {
       firstMainMovement(firstMain);
@@ -144,11 +153,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // NAVI
   /////////////////////////////////////////////////////////////////////
 
-  const naviContainer = document.querySelector(".main-comment__navi");
-  const prevButton = naviContainer.querySelector(".navi__button--prev");
-  const nextButton = naviContainer.querySelector(".navi__button--next");
+  const naviContainer = document.querySelector(".main-comment__navi"); // implemented
+  const prevButton = naviContainer.querySelector(".navi__button--prev"); // implemented
+  const nextButton = naviContainer.querySelector(".navi__button--next"); // implemented
 
   prevButton.addEventListener("click", function (e) {
+    // implemented
     if (commentIndex >= 1) {
       commentIndex--;
     } else {
@@ -161,6 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   nextButton.addEventListener("click", function (e) {
+    // implemented
     // currenMovementIsNavi = true;
     if (commentIndex < 10) {
       commentIndex++;
@@ -174,6 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function reshuffleCommentsArray(inputIndex = commentIndex) {
+    // implemented
     // Place new main comment in front of the array
     commentObjectsArray.unshift(commentObjectsArray[inputIndex]);
     inputIndex++;
@@ -185,6 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function changingHeadshot(chosenHeadshot) {
+    // implemented
     chosenHeadshot.style.filter = "blur(0px)";
     const currentMain = currentMainParent.querySelector(".main-comment__image");
     currentMain.style.filter = "blur(8px)";
