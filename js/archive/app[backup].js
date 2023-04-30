@@ -1,4 +1,4 @@
-import { commentObjectsArray } from "./comments";
+import { commentObjectsArray } from "../comments";
 
 document.addEventListener("DOMContentLoaded", function () {
   // declaring some global variables
