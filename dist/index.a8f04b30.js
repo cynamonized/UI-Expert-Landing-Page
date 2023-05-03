@@ -714,12 +714,27 @@ class Slider {
         this.commentObjectsArray = commentsArray;
         this.allHeadshots = [];
         this.sliderContainer = document.querySelector(this.name);
-        //
-        // TBD: all below could be in one method
-        // (with just declaring this.x above)
-        //
+        // All DOM Elements Slider uses
+        this.allCommentsContainer;
+        this.currentMainParent;
+        this.commentRating;
+        this.commentName;
+        this.commentPosition;
+        this.commentText;
+        this.commentDOMObjects;
+        this.firstMain;
+        this.naviContainer;
+        this.prevButton;
+        this.nextButton;
+        this.getDOMElements();
+    }
+    //////////////////////////////////////////////////////////////////////
+    // METHODS DEFINITION
+    /////////////////////////////////////////////////////////////////////
+    // METHOd that fills above constructor parts (DOM elements)
+    getDOMElements() {
         // PICKING UP blurred headshots container (&main comment)
-        this.allCommentsContainer = document.querySelector(".about-us__comment-avatars");
+        this.allCommentsContainer = this.sliderContainer.querySelector(".about-us__comment-avatars");
         // PICKING UP blurred headshots
         this.getHeadshots();
         // ADDING movement to blurred headshots
@@ -753,9 +768,6 @@ class Slider {
         // fr the beginning, it just misses pos: abs to do it effectively
         this.randomPostInterval(this.firstMain);
     }
-    //////////////////////////////////////////////////////////////////////
-    // METHODS DEFINITION
-    /////////////////////////////////////////////////////////////////////
     // METHOD that picks up every blurred headshot
     getHeadshots = ()=>{
         this.allHeadshots = document.querySelectorAll(".headshot");
