@@ -259,7 +259,6 @@ header:after {
   position: absolute;
   top: 0;
   right: 0;
-  box-shadow: 0 40px 40px #c5c3f926;
 }
 
 header .container__header {
@@ -1273,7 +1272,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 30px;
+  top: 17px;
   left: 80px;
 }
 
@@ -1285,7 +1284,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 115px;
+  top: 99px;
   left: 160px;
 }
 
@@ -1297,7 +1296,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 34px;
+  top: 106px;
   left: 240px;
 }
 
@@ -1309,7 +1308,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 137px;
+  top: 109px;
   left: 320px;
 }
 
@@ -1321,7 +1320,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 16px;
+  top: 104px;
   left: 400px;
 }
 
@@ -1333,7 +1332,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 35px;
+  top: 23px;
   left: 720px;
 }
 
@@ -1345,7 +1344,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 134px;
+  top: 115px;
   left: 840px;
 }
 
@@ -1357,7 +1356,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 4px;
+  top: 117px;
   left: 960px;
 }
 
@@ -1369,7 +1368,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 14px;
+  top: 129px;
   left: 1080px;
 }
 
@@ -1381,7 +1380,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 37px;
+  top: 102px;
   left: 1200px;
 }
 
