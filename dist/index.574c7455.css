@@ -569,7 +569,18 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   }
 }
 
-@keyframes goBig2 {
+@keyframes goSmall {
+  0% {
+    background-color: red;
+  }
+
+  50% {
+    background-color: #adff2f;
+  }
+
+  100% {
+    background-color: #ff0;
+  }
 }
 
 #services {
@@ -618,6 +629,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   flex-direction: column;
   align-items: center;
   display: flex;
+  position: relative;
 }
 
 .container__services .services__blocks .blocks__wrapper .blocks__single-block .single-block__image {
@@ -647,6 +659,16 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   line-height: 1.625rem;
 }
 
+.container__services .services__blocks .blocks__wrapper .blocks__single-block .single-block__exit {
+  width: 40px;
+  aspect-ratio: 1 / 1;
+  transition: all 1s;
+  display: block;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
+
 .container__services .services__blocks .blocks__wrapper .blocks__active-block {
   z-index: 2;
   animation: 2s ease-in-out forwards goBig;
@@ -655,6 +677,10 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
 
 .container__services .services__blocks .blocks__wrapper .blocks__hidden-clone {
   visibility: hidden;
+}
+
+.container__services .services__blocks .blocks__wrapper .blocks__closing {
+  animation: 2s ease-in-out forwards goSmall;
 }
 
 @media (max-width: 1350px) {
@@ -1318,7 +1344,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 8px;
+  top: 17px;
   left: 80px;
 }
 
@@ -1330,7 +1356,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 39px;
+  top: 115px;
   left: 160px;
 }
 
@@ -1342,7 +1368,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 24px;
+  top: 126px;
   left: 240px;
 }
 
@@ -1354,7 +1380,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 109px;
+  top: 96px;
   left: 320px;
 }
 
@@ -1366,7 +1392,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 13px;
+  top: 92px;
   left: 400px;
 }
 
@@ -1378,7 +1404,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 46px;
+  top: 17px;
   left: 720px;
 }
 
@@ -1390,7 +1416,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 20px;
+  top: 134px;
   left: 840px;
 }
 
@@ -1402,7 +1428,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 123px;
+  top: 113px;
   left: 960px;
 }
 
@@ -1414,7 +1440,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 34px;
+  top: 9px;
   left: 1080px;
 }
 
@@ -1426,7 +1452,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 93px;
+  top: 46px;
   left: 1200px;
 }
 

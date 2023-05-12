@@ -7,34 +7,16 @@ $gap_services_blocks_desktop: calc(math.div(30, 1300) * 100%);
 $gap_services_blocks_small-desktop: calc(math.div(30, 1100) * 100%);
 $gap_services_blocks_smallest-desktop: calc(math.div(30, 860) * 100%);
 
-// POLISH IT ALL BELOW
-//
-//
-//
 :root {
   --myHeight: 448px;
 }
 
 @keyframes goBig {
   0% {
-    // top: inherit;
-    // left: inherit;
-    // width: inherit;
-    // height: inherit;
-    // height: 448px;
     height: var(--myHeight);
   }
 
   50% {
-    // height: 100%;
-    // left: 0;
-    // top: 0;
-    // // right: 0;
-    // // bottom: 0;
-    // // height: inherit;
-    // top: 0;
-    // // height: inherit;
-    // height: initial;
     width: 100%;
     height: 100%;
     top: 0;
@@ -46,23 +28,20 @@ $gap_services_blocks_smallest-desktop: calc(math.div(30, 860) * 100%);
     height: 100%;
     top: 0;
     left: 0;
-    // left: 0;
-    // top: 0;
-    // right: 0;
-    // bottom: 0;
-
-    // height: 100%;
-
-    // height: inherit;
-    // height: 100%;
   }
 }
 
-@keyframes goBig2 {
+@keyframes goSmall {
   0% {
+    background-color: red;
+  }
+
+  50% {
+    background-color: greenyellow;
   }
 
   100% {
+    background-color: yellow;
   }
 }
 
@@ -116,6 +95,7 @@ $gap_services_blocks_smallest-desktop: calc(math.div(30, 860) * 100%);
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: relative;
 
         .single-block__image {
           margin-top: 88px;
@@ -136,26 +116,37 @@ $gap_services_blocks_smallest-desktop: calc(math.div(30, 860) * 100%);
           margin: 0 22px;
           margin-bottom: 21px;
         }
+
+        .single-block__exit {
+          position: absolute;
+          display: block;
+          top: 40px;
+          right: 40px;
+          width: 40px;
+          aspect-ratio: 1/1;
+          transition: 1s;
+        }
+
+        .single-block__exit--disabled {
+          // display: none;
+        }
       }
 
       .blocks__active-block {
         position: absolute;
         z-index: 2;
-        // width: 100%;
-        // height: 100%;
         animation: goBig 2s;
         animation-timing-function: ease-in-out;
         animation-fill-mode: forwards;
       }
-
-      // .blocks__active-block {
-      //   left: 0;
-      //   top: 0;
-      //   transition: 1s;
-      // }
-
       .blocks__hidden-clone {
         visibility: hidden;
+      }
+
+      .blocks__closing {
+        animation: goSmall 2s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
       }
     }
   }

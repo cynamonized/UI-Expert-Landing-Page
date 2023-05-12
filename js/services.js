@@ -1,5 +1,3 @@
-import { setTimeout } from "timers/promises";
-
 class Picker {
   constructor(servicesBlock) {
     this.block = servicesBlock;
@@ -19,49 +17,62 @@ class Picker {
 
   addInteractions() {
     this.blocksArray.forEach((element, i) => {
-      element.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        let elementHeight = e.currentTarget.offsetHeight;
-
-        // POLISH IT !!!!!!!!!!!
-        document.documentElement.style.setProperty(
-          "--myHeight",
-          elementHeight + "px"
-        );
-
-        console.log(elementHeight);
-
-        //////////////////////////////////////////////////////
-        // DELETE GOBIG2
-        /////////////////////////////////////////////////////
-
-        // COMMENT BELOW 2 LINES FOR goBig2
-        element.style.left = `${element.offsetLeft}px`;
-        element.style.top = `${element.offsetTop}px`;
-
-        const hiddenClone = element.cloneNode(true);
-
-        // element.style.height = `${elementHeight + 200}px`;
-        // console.log(hiddenClone);
-
-        this.blocksWrapper.insertBefore(hiddenClone, element);
-        hiddenClone.classList.add("blocks__hidden-clone");
-
-        element.style.position = "absolute";
-
-        element.classList.add("blocks__active-block");
-
-        // GO BIG 2 ONLY
-        // const parentWidth = this.blocksWrapper.offsetWidth;
-        // const parentHeight = this.blocksWrapper.offsetHeight;
-
-        // element.style.width = `${parentWidth}px`;
-        // element.style.height = `${parentHeight}px`;
-        /////////////////
-      });
+      element.addEventListener("click", this.openingPopUp);
     });
   }
+
+  openingPopUp = (e) => {
+    console.log("Opening");
+    e.stopImmediatePropagation();
+    e.preventDefault();
+
+    e.currentTarget.classList.remove("blocks__closing");
+
+    let elementHeight = e.currentTarget.offsetHeight;
+
+    document.documentElement.style.setProperty(
+      "--myHeight",
+      elementHeight + "px"
+    );
+
+    e.currentTarget.style.left = `${e.currentTarget.offsetLeft}px`;
+    e.currentTarget.style.top = `${e.currentTarget.offsetTop}px`;
+
+    const hiddenClone = e.currentTarget.cloneNode(true);
+
+    this.blocksWrapper.insertBefore(hiddenClone, e.currentTarget);
+    hiddenClone.classList.add("blocks__hidden-clone");
+
+    e.currentTarget.style.position = "absolute";
+
+    e.currentTarget.classList.add("blocks__active-block");
+
+    const xButton = e.currentTarget.querySelector(".single-block__exit");
+    xButton.addEventListener("click", this.closingPopUp);
+
+    e.currentTarget.removeEventListener("click", this.openingPopUp);
+  };
+
+  closingPopUp = (e) => {
+    console.log(e.currentTarget.parentElement);
+
+    e.currentTarget.parentElement.classList.remove("blocks__active-block");
+    e.currentTarget.parentElement.classList.add("blocks__closing");
+    e.currentTarget.removeEventListener("click", this.closingPopUp);
+    e.currentTarget.parentElement.removeAttribute("style");
+
+    const placeholderClone = this.mainContainer.querySelector(
+      ".blocks__hidden-clone"
+    );
+    placeholderClone.style.backgroundColor = "red";
+    placeholderClone.style.zIndex = "50";
+    console.log(placeholderClone);
+    placeholderClone.parentElement.removeChild(placeholderClone);
+
+    const parent = e.currentTarget.parentElement;
+
+    setTimeout(() => parent.addEventListener("click", this.openingPopUp), 500);
+  };
 }
 
 export { Picker };
