@@ -16,13 +16,6 @@ $gap_services_blocks_smallest-desktop: calc(math.div(30, 860) * 100%);
     height: var(--myHeight);
   }
 
-  50% {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-  }
-
   100% {
     width: 100%;
     height: 100%;
@@ -33,15 +26,14 @@ $gap_services_blocks_smallest-desktop: calc(math.div(30, 860) * 100%);
 
 @keyframes goSmall {
   0% {
-    background-color: red;
-  }
-
-  50% {
-    background-color: greenyellow;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
   }
 
   100% {
-    background-color: yellow;
+    height: var(--myHeight);
   }
 }
 
@@ -113,8 +105,10 @@ $gap_services_blocks_smallest-desktop: calc(math.div(30, 860) * 100%);
         .single-block__description {
           @include font-settings(1rem, 300, 1.625rem, white, $font-main);
           text-align: center;
-          margin: 0 22px;
+          margin: 0 50px;
           margin-bottom: 21px;
+          transition: 0.5s;
+          opacity: 1;
         }
 
         .single-block__exit {
@@ -125,17 +119,26 @@ $gap_services_blocks_smallest-desktop: calc(math.div(30, 860) * 100%);
           width: 40px;
           aspect-ratio: 1/1;
           transition: 1s;
+          opacity: 1;
         }
 
         .single-block__exit--disabled {
-          // display: none;
+          opacity: 0;
+        }
+
+        .btn-single-block--removed {
+          visibility: hidden;
+        }
+
+        .description--disabled {
+          display: none;
         }
       }
 
       .blocks__active-block {
         position: absolute;
         z-index: 2;
-        animation: goBig 2s;
+        animation: goBig 1s;
         animation-timing-function: ease-in-out;
         animation-fill-mode: forwards;
       }
@@ -144,7 +147,7 @@ $gap_services_blocks_smallest-desktop: calc(math.div(30, 860) * 100%);
       }
 
       .blocks__closing {
-        animation: goSmall 2s;
+        animation: goSmall 1s;
         animation-timing-function: ease-in-out;
         animation-fill-mode: forwards;
       }
