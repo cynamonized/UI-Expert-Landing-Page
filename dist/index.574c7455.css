@@ -581,6 +581,16 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   }
 }
 
+@keyframes goBigMobile {
+  0% {
+    width: calc(50% - 15px);
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
 #services {
   background-color: #ededee;
 }
@@ -686,6 +696,10 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 2;
   animation: 1s ease-in-out forwards goBig;
   position: absolute;
+}
+
+.container__services .services__blocks .blocks__wrapper .block__active-block--mobile {
+  animation: 1s ease-in-out forwards goBigMobile;
 }
 
 .container__services .services__blocks .blocks__wrapper .blocks__hidden-clone {
@@ -1357,7 +1371,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 93px;
+  top: 110px;
   left: 80px;
 }
 
@@ -1369,7 +1383,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 2px;
+  top: 128px;
   left: 160px;
 }
 
@@ -1381,7 +1395,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 42px;
+  top: 16px;
   left: 240px;
 }
 
@@ -1393,7 +1407,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 115px;
+  top: 94px;
   left: 320px;
 }
 
@@ -1405,7 +1419,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 133px;
+  top: 7px;
   left: 400px;
 }
 
@@ -1417,7 +1431,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 1px;
+  top: 129px;
   left: 720px;
 }
 
@@ -1429,7 +1443,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 139px;
+  top: 9px;
   left: 840px;
 }
 
@@ -1441,7 +1455,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 46px;
+  top: 92px;
   left: 960px;
 }
 
@@ -1453,7 +1467,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 140px;
+  top: 114px;
   left: 1080px;
 }
 
@@ -1465,7 +1479,7 @@ header .container__header .header__right-menu .right-menu__elements li:hover {
   z-index: 5;
   transition: all 3s;
   position: absolute;
-  top: 100px;
+  top: 7px;
   left: 1200px;
 }
 

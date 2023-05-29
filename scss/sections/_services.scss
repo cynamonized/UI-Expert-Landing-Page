@@ -37,6 +37,16 @@ $gap_services_blocks_smallest-desktop: calc(math.div(30, 860) * 100%);
   }
 }
 
+@keyframes goBigMobile {
+  0% {
+    width: calc((100% - 30px) / 2);
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
 #services {
   background-color: #ededee;
 }
@@ -142,6 +152,13 @@ $gap_services_blocks_smallest-desktop: calc(math.div(30, 860) * 100%);
         animation-timing-function: ease-in-out;
         animation-fill-mode: forwards;
       }
+
+      .block__active-block--mobile {
+        animation: goBigMobile 1s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
       .blocks__hidden-clone {
         visibility: hidden;
       }
