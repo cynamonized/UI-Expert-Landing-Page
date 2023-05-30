@@ -81,8 +81,8 @@ class Picker {
 
   openingDesktop = (e) => {
     console.log("Opening");
-    e.stopImmediatePropagation();
     e.preventDefault();
+    e.stopImmediatePropagation();
 
     const exitButton = e.currentTarget.querySelector(".single-block__exit");
     const readMoreButton = e.currentTarget.querySelector(".btn-single-block");
