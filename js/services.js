@@ -80,9 +80,9 @@ class Picker {
   };
 
   openingDesktop = (e) => {
-    console.log("Opening");
-    e.preventDefault();
+    console.log("Openingg");
     e.stopImmediatePropagation();
+    e.preventDefault();
 
     const exitButton = e.currentTarget.querySelector(".single-block__exit");
     const readMoreButton = e.currentTarget.querySelector(".btn-single-block");
