@@ -945,7 +945,7 @@ class Picker {
         });
     };
     openingDesktop = (e)=>{
-        console.log("Opening");
+        console.log("Openingg");
         e.stopImmediatePropagation();
         e.preventDefault();
         const exitButton = e.currentTarget.querySelector(".single-block__exit");
@@ -1029,8 +1029,6 @@ class Picker {
         // TO BE CHECK IF IT"S THE SAME TOO
         // e.currentTarget.parentElement.classList.add("blocks__closing");
         // same commet as opening (about forEach part)
-        // asoiasyg98a9d8gfhasdf
-        //saiduhfiusagdiufgsad
         const timeoutIDblocksBack = setTimeout(()=>{
             this.blocksArray.forEach((element)=>{
                 element.removeAttribute("style");
